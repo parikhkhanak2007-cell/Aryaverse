@@ -1,0 +1,2118 @@
+/* =========================================================
+   ARYAVERSE
+   MAIN WEBSITE
+========================================================= */
+
+:root {
+
+    --black: #090604;
+    --deep-brown: #140c07;
+    --brown: #21140b;
+    --brown-light: #302015;
+
+    --cream: #f3e8d4;
+    --muted: #bcae98;
+
+    --gold: #c99d4c;
+    --gold-light: #e0bb72;
+
+    --line: rgba(201, 157, 76, .22);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+    background: var(--black);
+}
+
+
+body {
+
+    background: var(--black);
+
+    color: var(--cream);
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+body.opening-active {
+    overflow: hidden;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+button {
+    font-family: inherit;
+}
+
+
+img {
+    display: block;
+    width: 100%;
+}
+
+
+
+/* =========================================================
+   OPENING SCREEN
+========================================================= */
+
+.opening-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    z-index: 9999;
+
+    overflow: hidden;
+
+    background: #050403;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transition:
+        opacity 1.3s ease,
+        visibility 1.3s ease;
+}
+
+
+.opening-screen.hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+
+/* =========================================================
+   OPENING VIDEO
+========================================================= */
+
+.opening-video {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: 0;
+
+    transform: scale(1.02);
+
+    transition:
+        opacity .8s ease,
+        transform 8s ease;
+}
+
+
+/*
+ * Video becomes visible only after
+ * ENTER is clicked.
+ */
+
+.opening-screen.video-playing
+.opening-video {
+
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+
+
+/* =========================================================
+   OPENING VIGNETTE
+========================================================= */
+
+.opening-vignette {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            ellipse at center,
+            rgba(0, 0, 0, .05) 15%,
+            rgba(0, 0, 0, .25) 60%,
+            rgba(0, 0, 0, .78) 100%
+        );
+}
+
+
+
+/* =========================================================
+   ENTER SCREEN
+========================================================= */
+
+.enter-screen {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 10;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    background:
+        rgba(5, 3, 2, .32);
+
+    transition:
+
+        opacity .45s ease,
+
+        visibility .45s ease;
+}
+
+
+/*
+ * This is what makes ENTER disappear
+ * immediately when clicked.
+ */
+
+.enter-screen.hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+.opening-eyebrow {
+
+    color: var(--gold-light);
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 20px;
+}
+
+
+.enter-screen h1 {
+
+    font-family:
+        "Cinzel",
+        serif;
+
+    font-size:
+        clamp(48px, 8vw, 115px);
+
+    font-weight: 500;
+
+    line-height: .95;
+
+    letter-spacing: 8px;
+
+    color: #f4dfb7;
+}
+
+
+.opening-tagline {
+
+    margin-top: 20px;
+
+    color: #d8b574;
+
+    font-size: 10px;
+
+    letter-spacing: 6px;
+}
+
+
+
+/* =========================================================
+   ENTER BUTTON
+========================================================= */
+
+.enter-button {
+
+    margin-top: 48px;
+
+    padding: 16px 45px;
+
+    background:
+        rgba(8, 5, 3, .4);
+
+    border:
+        1px solid
+        rgba(224, 187, 114, .9);
+
+    color:
+        #f4e8d3;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    cursor: pointer;
+
+    transition:
+
+        background .35s ease,
+
+        color .35s ease,
+
+        transform .35s ease,
+
+        border-color .35s ease;
+}
+
+
+.enter-button:hover {
+
+    background:
+        var(--gold);
+
+    color:
+        #100904;
+
+    border-color:
+        var(--gold);
+
+    transform:
+        translateY(-3px);
+}
+
+
+.enter-button:disabled {
+
+    cursor:
+        default;
+}
+
+
+
+/* =========================================================
+   MAIN SITE
+========================================================= */
+
+.main-site {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+
+.main-site.visible {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+
+/* =========================================================
+   ARYAVERSE NAVBAR
+========================================================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 94px;
+
+    padding: 0 5%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: 1000;
+
+    /*
+     * No rectangular background.
+     * The navbar should disappear naturally
+     * into the cinematic page.
+     */
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(8, 5, 3, .82),
+            rgba(8, 5, 3, .35),
+            transparent
+        );
+
+    backdrop-filter: blur(3px);
+}
+
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    height: 70px;
+
+    /*
+     * Important:
+     * no background
+     * no rectangle
+     * no border
+     */
+
+    background: transparent;
+
+    border: none;
+
+    flex-shrink: 0;
+}
+
+
+
+/* =========================================================
+   CIRCULAR LOGO MEDALLION
+========================================================= */
+
+.brand-medallion {
+
+    position: relative;
+
+    width: 68px;
+
+    height: 68px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    /*
+     * Main circular frame
+     */
+
+    border:
+        1px solid
+        rgba(218, 176, 91, .95);
+
+    /*
+     * Very subtle golden glow
+     */
+
+    box-shadow:
+
+        0 0 0 1px
+        rgba(218, 176, 91, .08),
+
+        0 0 22px
+        rgba(190, 137, 47, .12),
+
+        inset 0 0 18px
+        rgba(190, 137, 47, .08);
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(74, 45, 18, .32),
+            rgba(8, 5, 3, .72)
+        );
+
+    overflow: hidden;
+}
+
+
+
+/*
+ * Decorative inner circular ring.
+ */
+
+.brand-medallion::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 5px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(218, 176, 91, .30);
+
+    pointer-events: none;
+}
+
+
+
+/*
+ * Small decorative golden dots.
+ */
+
+.brand-medallion::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 4px;
+
+    height: 4px;
+
+    border-radius: 50%;
+
+    top: 6px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        #d9b36b;
+
+    box-shadow:
+
+        0 56px 0
+        #d9b36b,
+
+        28px 28px 0
+        rgba(217,179,107,.65),
+
+        -28px 28px 0
+        rgba(217,179,107,.65);
+
+    opacity: .8;
+
+    pointer-events: none;
+}
+
+
+
+/* =========================================================
+   LOGO INSIDE CIRCLE
+========================================================= */
+
+.brand-medallion-inner {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+}
+
+
+.brand-medallion img {
+
+    width: 45px;
+
+    height: 45px;
+
+    object-fit: contain;
+
+    /*
+     * Prevents the logo from looking
+     * like it is inside a white box.
+     */
+
+    mix-blend-mode: normal;
+
+    filter:
+        drop-shadow(
+            0 2px 5px
+            rgba(0,0,0,.5)
+        );
+
+    transition:
+        transform .45s ease,
+        filter .45s ease;
+}
+
+
+.brand:hover
+.brand-medallion img {
+
+    transform:
+        scale(1.08);
+
+    filter:
+        drop-shadow(
+            0 0 7px
+            rgba(220,179,94,.35)
+        );
+}
+
+
+
+/* =========================================================
+   WORDMARK
+========================================================= */
+
+.brand-wordmark {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding-top: 2px;
+}
+
+
+.brand-wordmark strong {
+
+    font-family:
+        "Cinzel",
+        serif;
+
+    font-size:
+        16px;
+
+    font-weight:
+        600;
+
+    letter-spacing:
+        3px;
+
+    line-height:
+        1;
+}
+
+
+.brand-wordmark small {
+
+    margin-top:
+        6px;
+
+    color:
+        #c9a968;
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        2px;
+
+    white-space:
+        nowrap;
+}
+
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav-links {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        34px;
+}
+
+
+.nav-links a {
+
+    position:
+        relative;
+
+    color:
+        #ddd0bb;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        2px;
+
+    transition:
+        color .3s ease;
+}
+
+
+.nav-links a::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    left:
+        0;
+
+    bottom:
+        -8px;
+
+    width:
+        0;
+
+    height:
+        1px;
+
+    background:
+        #dfb96f;
+
+    transition:
+        width .3s ease;
+}
+
+
+.nav-links a:hover,
+.nav-links a.active {
+
+    color:
+        #dfb96f;
+}
+
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+
+    width:
+        100%;
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+
+        height:
+            76px;
+
+        padding:
+            0 18px;
+    }
+
+
+    .brand {
+
+        gap:
+            0;
+    }
+
+
+    .brand-medallion {
+
+        width:
+            55px;
+
+        height:
+            55px;
+    }
+
+
+    .brand-medallion-inner {
+
+        width:
+            45px;
+
+        height:
+            45px;
+    }
+
+
+    .brand-medallion img {
+
+        width:
+            36px;
+
+        height:
+            36px;
+    }
+
+
+    .brand-wordmark {
+
+        display:
+            none;
+    }
+
+
+    .nav-links {
+
+        gap:
+            15px;
+    }
+
+
+    .nav-links a {
+
+        font-size:
+            7px;
+    }
+
+
+    .nav-links a:nth-child(n+3) {
+
+        display:
+            none;
+    }
+
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 32px;
+}
+
+
+.nav-links a {
+
+    position: relative;
+
+    color: #ddd0bb;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    transition:
+        color .3s ease;
+}
+
+
+.nav-links a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -8px;
+
+    width: 0;
+
+    height: 1px;
+
+    background: var(--gold-light);
+
+    transition:
+        width .3s ease;
+}
+
+
+.nav-links a:hover,
+.nav-links a.active {
+
+    color: var(--gold-light);
+}
+
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+
+    width: 100%;
+}
+
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    padding:
+        0 8% 12%;
+
+    overflow: hidden;
+}
+
+
+.hero-background {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        url("/images/india.png")
+        center center /
+        cover no-repeat;
+
+    transform: scale(1.05);
+
+    animation:
+        heroZoom
+        12s
+        ease-out
+        forwards;
+}
+
+
+@keyframes heroZoom {
+
+    from {
+        transform: scale(1.08);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+
+.hero-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            to top,
+            rgba(18, 10, 5, .96) 0%,
+            rgba(18, 10, 5, .68) 32%,
+            rgba(18, 10, 5, .08) 80%
+        );
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 760px;
+}
+
+
+.eyebrow {
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        4px;
+
+    margin-bottom:
+        22px;
+}
+
+
+.hero h1 {
+
+    font-family:
+        "Cinzel",
+        serif;
+
+    font-size:
+        clamp(65px, 10vw, 145px);
+
+    line-height:
+        .88;
+
+    font-weight:
+        500;
+
+    letter-spacing:
+        -4px;
+}
+
+
+.hero h1 em,
+.india-content h2 em,
+.section-heading h2 em,
+.calendar-heading h2 em {
+
+    color:
+        var(--gold-light);
+
+    font-style:
+        italic;
+}
+
+
+.hero-description {
+
+    max-width:
+        500px;
+
+    margin-top:
+        34px;
+
+    color:
+        #d2c4ad;
+
+    font-size:
+        14px;
+
+    line-height:
+        1.9;
+}
+
+
+.hero-button,
+.text-button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        18px;
+
+    margin-top:
+        34px;
+
+    padding-bottom:
+        10px;
+
+    border-bottom:
+        1px solid
+        rgba(201, 157, 76, .55);
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        3px;
+
+    transition:
+        gap .3s ease;
+}
+
+
+.hero-button:hover,
+.text-button:hover {
+
+    gap:
+        28px;
+}
+
+
+
+/* =========================================================
+   SCROLL INDICATOR
+========================================================= */
+
+.scroll-indicator {
+
+    position: absolute;
+
+    right: 6%;
+
+    bottom: 7%;
+
+    z-index: 3;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.scroll-indicator span {
+
+    writing-mode:
+        vertical-rl;
+
+    color:
+        #c9b99f;
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        3px;
+}
+
+
+.scroll-line {
+
+    width:
+        1px;
+
+    height:
+        65px;
+
+    background:
+        var(--gold);
+}
+
+
+
+/* =========================================================
+   INDIA SECTION
+========================================================= */
+
+.india-section {
+
+    min-height:
+        90vh;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1.1fr .9fr;
+
+    background:
+        var(--brown);
+}
+
+
+.india-image {
+
+    min-height:
+        650px;
+
+    overflow:
+        hidden;
+}
+
+
+.india-image img {
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    transition:
+        transform 1s ease;
+}
+
+
+.india-section:hover
+.india-image img {
+
+    transform:
+        scale(1.03);
+}
+
+
+.india-content {
+
+    padding:
+        10% 9%;
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+}
+
+
+.india-content h2 {
+
+    font-family:
+        "Cinzel",
+        serif;
+
+    font-size:
+        clamp(45px, 5vw, 75px);
+
+    line-height:
+        1.05;
+
+    font-weight:
+        500;
+}
+
+
+.gold-line {
+
+    width:
+        65px;
+
+    height:
+        1px;
+
+    background:
+        var(--gold);
+
+    margin:
+        30px 0;
+}
+
+
+.india-content >
+p:not(.eyebrow) {
+
+    max-width:
+        480px;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.9;
+
+    font-size:
+        14px;
+}
+
+
+
+/* =========================================================
+   EXPERIENCES
+========================================================= */
+
+.experiences-section {
+
+    padding:
+        130px 7%;
+
+    background:
+        var(--deep-brown);
+}
+
+
+.section-heading {
+
+    max-width:
+        680px;
+
+    margin-bottom:
+        65px;
+}
+
+
+.section-heading h2 {
+
+    font-family:
+        "Cinzel",
+        serif;
+
+    font-size:
+        clamp(45px, 6vw, 80px);
+
+    line-height:
+        1;
+
+    font-weight:
+        500;
+}
+
+
+.section-heading >
+p:last-child {
+
+    margin-top:
+        25px;
+
+    max-width:
+        500px;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.8;
+}
+
+
+.experience-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        18px;
+}
+
+
+.experience-card {
+
+    position:
+        relative;
+
+    height:
+        500px;
+
+    overflow:
+        hidden;
+
+    cursor:
+        pointer;
+}
+
+
+.experience-card img {
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+
+    transition:
+        transform 1s ease;
+}
+
+
+.experience-card:hover img {
+
+    transform:
+        scale(1.07);
+}
+
+
+.experience-overlay {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+
+        linear-gradient(
+            to top,
+            rgba(10, 5, 3, .94),
+            rgba(10, 5, 3, .08) 70%
+        );
+}
+
+
+.experience-content {
+
+    position:
+        absolute;
+
+    left:
+        30px;
+
+    right:
+        25px;
+
+    bottom:
+        30px;
+}
+
+
+.card-label {
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        7px;
+
+    letter-spacing:
+        2px;
+
+    margin-bottom:
+        12px;
+}
+
+
+.experience-content h3 {
+
+    font-family:
+        "Cinzel",
+        serif;
+
+    font-size:
+        28px;
+
+    font-weight:
+        500;
+}
+
+
+.experience-content >
+p:last-child {
+
+    margin-top:
+        9px;
+
+    color:
+        #d0c1ab;
+
+    font-size:
+        12px;
+
+    line-height:
+        1.6;
+}
+
+
+
+/* =========================================================
+   GUJARAT
+========================================================= */
+
+.gujarat-section {
+
+    position:
+        relative;
+
+    min-height:
+        80vh;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    padding:
+        8%;
+
+    overflow:
+        hidden;
+}
+
+
+.gujarat-image {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+}
+
+
+.gujarat-image img {
+
+    height:
+        100%;
+
+    object-fit:
+        cover;
+}
+
+
+.gujarat-overlay {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(16, 8, 4, .94),
+            rgba(16, 8, 4, .4),
+            rgba(16, 8, 4, .12)
+        );
+}
+
+
+.gujarat-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    max-width:
+        600px;
+}
+
+
+.gujarat-content h2 {
+
+    font-family:
+        "Cinzel",
+        serif;
+
+    font-size:
+        clamp(60px, 8vw, 110px);
+
+    font-weight:
+        500;
+}
+
+
+.gujarat-content >
+p:not(.eyebrow) {
+
+    max-width:
+        500px;
+
+    color:
+        #d4c6b0;
+
+    line-height:
+        1.9;
+}
+
+
+
+/* =========================================================
+   CULTURAL CALENDAR
+========================================================= */
+
+.calendar-section {
+
+    padding:
+        130px 7%;
+
+    background:
+        var(--brown);
+}
+
+
+.calendar-heading {
+
+    max-width:
+        650px;
+
+    margin:
+        0 auto 70px;
+
+    text-align:
+        center;
+}
+
+
+.calendar-heading h2 {
+
+    font-family:
+        "Cinzel",
+        serif;
+
+    font-size:
+        clamp(50px, 6vw, 80px);
+
+    font-weight:
+        500;
+}
+
+
+.calendar-heading >
+p:last-child {
+
+    margin-top:
+        20px;
+
+    color:
+        var(--muted);
+}
+
+
+.calendar-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    border-top:
+        1px solid
+        var(--line);
+}
+
+
+.calendar-item {
+
+    min-height:
+        240px;
+
+    padding:
+        45px 30px;
+
+    border-right:
+        1px solid
+        var(--line);
+}
+
+
+.calendar-item:last-child {
+
+    border-right:
+        none;
+}
+
+
+.calendar-item span {
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        3px;
+}
+
+
+.calendar-item h3 {
+
+    margin-top:
+        25px;
+
+    font-family:
+        "Cinzel",
+        serif;
+
+    font-size:
+        25px;
+
+    font-weight:
+        500;
+}
+
+
+.calendar-item p {
+
+    margin-top:
+        15px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+
+    line-height:
+        1.8;
+}
+
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+
+    padding:
+        80px 7% 30px;
+
+    background:
+        #0a0603;
+}
+
+
+.footer-brand {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    text-align:
+        center;
+}
+
+
+.footer-logo {
+
+    width:
+        75px;
+
+    height:
+        75px;
+
+    border:
+        1px solid
+        var(--gold);
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+}
+
+
+.footer-logo img {
+
+    width:
+        48px;
+}
+
+
+.footer-brand h2 {
+
+    margin-top:
+        20px;
+
+    font-family:
+        "Cinzel",
+        serif;
+
+    letter-spacing:
+        4px;
+}
+
+
+.footer-brand p {
+
+    margin-top:
+        8px;
+
+    color:
+        var(--gold-light);
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        3px;
+}
+
+
+.footer-links {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        35px;
+
+    margin-top:
+        55px;
+}
+
+
+.footer-links a {
+
+    color:
+        #bdae98;
+
+    font-size:
+        9px;
+
+    letter-spacing:
+        2px;
+}
+
+
+.footer-links a:hover {
+
+    color:
+        var(--gold-light);
+}
+
+
+.footer-bottom {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-top:
+        70px;
+
+    padding-top:
+        25px;
+
+    border-top:
+        1px solid
+        rgba(201,157,76,.15);
+
+    color:
+        #756858;
+
+    font-size:
+        8px;
+
+    letter-spacing:
+        2px;
+}
+
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .experience-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .calendar-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .calendar-item:nth-child(2) {
+
+        border-right:
+            none;
+    }
+
+}
+
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+
+        height:
+            72px;
+
+        padding:
+            0 20px;
+    }
+
+
+    .brand-text {
+
+        display:
+            none;
+    }
+
+
+    .brand-logo {
+
+        width:
+            46px;
+
+        height:
+            46px;
+    }
+
+
+    .brand-logo img {
+
+        width:
+            31px;
+
+        height:
+            31px;
+    }
+
+
+    .nav-links {
+
+        gap:
+            15px;
+    }
+
+
+    .nav-links a {
+
+        font-size:
+            7px;
+    }
+
+
+    .nav-links a:nth-child(3),
+    .nav-links a:nth-child(4),
+    .nav-links a:nth-child(5) {
+
+        display:
+            none;
+    }
+
+
+    .enter-screen h1 {
+
+        font-size:
+            43px;
+
+        letter-spacing:
+            4px;
+    }
+
+
+    .opening-eyebrow {
+
+        font-size:
+            7px;
+
+        letter-spacing:
+            3px;
+    }
+
+
+    .opening-tagline {
+
+        font-size:
+            7px;
+
+        letter-spacing:
+            3px;
+    }
+
+
+    .hero {
+
+        padding:
+            0 25px 100px;
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            60px;
+
+        letter-spacing:
+            -2px;
+    }
+
+
+    .hero-description {
+
+        font-size:
+            13px;
+    }
+
+
+    .scroll-indicator {
+
+        display:
+            none;
+    }
+
+
+    .india-section {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .india-image {
+
+        min-height:
+            430px;
+    }
+
+
+    .india-content {
+
+        padding:
+            80px 30px;
+    }
+
+
+    .experience-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .experience-card {
+
+        height:
+            430px;
+    }
+
+
+    .experiences-section,
+    .calendar-section {
+
+        padding:
+            90px 25px;
+    }
+
+
+    .gujarat-section {
+
+        min-height:
+            650px;
+
+        padding:
+            70px 25px;
+    }
+
+
+    .calendar-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .calendar-item {
+
+        border-right:
+            none;
+
+        border-bottom:
+            1px solid
+            var(--line);
+    }
+
+
+    .footer-bottom {
+
+        flex-direction:
+            column;
+
+        gap:
+            15px;
+
+        text-align:
+            center;
+    }
+
+}

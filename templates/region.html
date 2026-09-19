@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ region.name }} — Aryaverse
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='region.css') }}"
+    >
+
+</head>
+
+
+<body
+    data-state-slug="{{ region.state.slug }}"
+    data-region-slug="{{ region.slug }}"
+>
+
+
+    <!-- =====================================
+         NAVBAR
+    ====================================== -->
+
+    <header class="region-navbar">
+
+        <a
+            href="/"
+            class="region-brand"
+        >
+
+            <span class="brand-medallion">
+
+                <span class="brand-inner">
+
+                    <img
+                        src="/images/logo.png"
+                        alt="Aryaverse"
+                    >
+
+                </span>
+
+            </span>
+
+
+            <span class="brand-text">
+
+                <strong>
+                    ARYAVERSE
+                </strong>
+
+                <small>
+                    WHERE INDIA COMES ALIVE
+                </small>
+
+            </span>
+
+        </a>
+
+
+        <nav class="region-nav">
+
+            <a href="/">
+                HOME
+            </a>
+
+            <a href="/map">
+                MAP
+            </a>
+
+            <a href="/state/{{ region.state.slug }}">
+                {{ region.state.name|upper }}
+            </a>
+
+            <a href="/#calendar">
+                CALENDAR
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main class="region-page">
+
+
+        <!-- =================================
+             HERO
+        ================================== -->
+
+        <section class="region-hero">
+
+
+            <div class="region-hero-image">
+
+                {% if region.slug == "kutch" %}
+
+                    <img
+                        src="/images/kutch-banner.png"
+                        alt="Kutch"
+                    >
+
+                {% elif region.image %}
+
+                    <img
+                        src="{{
+                            region.image
+                            if region.image.startswith('/')
+                            else '/images/' + region.image
+                        }}"
+                        alt="{{ region.name }}"
+                    >
+
+                {% else %}
+
+                    <img
+                        src="/images/india.png"
+                        alt="{{ region.name }}"
+                    >
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="region-hero-overlay"></div>
+
+
+            <div class="region-hero-content">
+
+                <p class="eyebrow">
+
+                    {{ region.state.name|upper }}
+
+                </p>
+
+
+                <h1>
+
+                    {{ region.name }}
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    {{
+                        region.description
+                        or
+                        "Discover the traditions, landscapes, food, festivals, crafts and stories of this region."
+                    }}
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             CULTURAL INTRO
+        ================================== -->
+
+        <section class="region-intro">
+
+            <div>
+
+                <p class="eyebrow">
+                    CULTURAL EXPERIENCES
+                </p>
+
+                <h2>
+                    Enter the world of
+                    {{ region.name }}.
+                </h2>
+
+            </div>
+
+
+            <p>
+
+                Explore the flavours, celebrations,
+                craftsmanship and living stories that
+                give this region its character.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================
+             EXPERIENCES
+        ================================== -->
+
+        <section
+            class="experiences-section"
+            id="experiences"
+        >
+
+
+            <div class="section-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        DISCOVER
+                    </p>
+
+                    <h2>
+                        Experience {{ region.name }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="experience-grid">
+
+
+                <!-- =============================
+                     FOOD
+                ============================== -->
+
+                <article
+                    class="experience-card"
+                    data-experience="food"
+                >
+
+                    <div class="experience-image">
+
+                        {% if region.slug == "kutch" %}
+
+                            <img
+                                src="/images/kutch-food.png"
+                                alt="Food of Kutch"
+                                loading="lazy"
+                            >
+
+                        {% else %}
+
+                            <img
+                                src="{{
+                                    region.image
+                                    if region.image and region.image.startswith('/')
+                                    else '/images/india.png'
+                                }}"
+                                alt="Food of {{ region.name }}"
+                                loading="lazy"
+                            >
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="experience-overlay"></div>
+
+
+                    <div class="experience-content">
+
+                        <p>
+                            FLAVOURS
+                        </p>
+
+                        <h3>
+                            Food
+                        </h3>
+
+                        <span>
+                            DISCOVER THE TASTE →
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =============================
+                     FESTIVALS
+                ============================== -->
+
+                <article
+                    class="experience-card"
+                    data-experience="festivals"
+                >
+
+                    <div class="experience-image">
+
+                        {% if region.slug == "kutch" %}
+
+                            <img
+                                src="/images/kutch-festival.png"
+                                alt="Festivals of Kutch"
+                                loading="lazy"
+                            >
+
+                        {% else %}
+
+                            <img
+                                src="/images/festivals.png"
+                                alt="Festivals of {{ region.name }}"
+                                loading="lazy"
+                            >
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="experience-overlay"></div>
+
+
+                    <div class="experience-content">
+
+                        <p>
+                            CELEBRATIONS
+                        </p>
+
+                        <h3>
+                            Festivals
+                        </h3>
+
+                        <span>
+                            STEP INTO THE CELEBRATION →
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =============================
+                     TEXTILES
+                ============================== -->
+
+                <article
+                    class="experience-card"
+                    data-experience="textiles"
+                >
+
+                    <div class="experience-image">
+
+                        {% if region.slug == "kutch" %}
+
+                            <img
+                                src="/images/kutch-textile.png"
+                                alt="Textiles of Kutch"
+                                loading="lazy"
+                            >
+
+                        {% else %}
+
+                            <img
+                                src="/images/textiles.png"
+                                alt="Textiles of {{ region.name }}"
+                                loading="lazy"
+                            >
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="experience-overlay"></div>
+
+
+                    <div class="experience-content">
+
+                        <p>
+                            CRAFT
+                        </p>
+
+                        <h3>
+                            Textiles
+                        </h3>
+
+                        <span>
+                            EXPLORE THE CRAFT →
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- =============================
+                     FOLK STORIES
+                ============================== -->
+
+                <article
+                    class="experience-card folk-card"
+                    data-experience="stories"
+                >
+
+                    <div class="experience-image">
+
+                        {% if region.slug == "kutch" %}
+
+                            <img
+                                src="/images/kutch-story.png"
+                                alt="Folk story of Kutch"
+                                loading="lazy"
+                            >
+
+                        {% else %}
+
+                            <img
+                                src="/images/sacred-spaces.png"
+                                alt="Folk stories of {{ region.name }}"
+                                loading="lazy"
+                            >
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="experience-overlay"></div>
+
+
+                    <div class="experience-content">
+
+                        <p>
+                            ORAL TRADITIONS
+                        </p>
+
+                        <h3>
+                            Folk Stories
+                        </h3>
+
+                        <span>
+                            ENTER THE FOLK STORY →
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             FOLK STORIES FROM DATABASE
+        ================================== -->
+
+        {% if region.stories %}
+
+        <section
+            class="stories-section"
+            id="folk-stories"
+        >
+
+            <div class="section-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        STORIES OF THE LAND
+                    </p>
+
+                    <h2>
+                        Folk Stories
+                    </h2>
+
+                </div>
+
+                <span class="story-count">
+
+                    {{ region.stories|length }}
+                    STORIES
+
+                </span>
+
+            </div>
+
+
+            <div class="stories-grid">
+
+                {% for story in region.stories %}
+
+                <a
+                    class="story-card"
+                    href="/story/{{ story.id }}"
+                >
+
+                    <div class="story-image">
+
+                        {% if story.image %}
+
+                            <img
+                                src="{{
+                                    story.image
+                                    if story.image.startswith('/')
+                                    else '/images/' + story.image
+                                }}"
+                                alt="{{ story.title }}"
+                                loading="lazy"
+                            >
+
+                        {% elif region.slug == "kutch" %}
+
+                            <img
+                                src="/images/kutch-story.png"
+                                alt="{{ story.title }}"
+                                loading="lazy"
+                            >
+
+                        {% else %}
+
+                            <img
+                                src="/images/sacred-spaces.png"
+                                alt="{{ story.title }}"
+                                loading="lazy"
+                            >
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="story-content">
+
+                        <p>
+                            FOLK STORY
+                        </p>
+
+                        <h3>
+                            {{ story.title }}
+                        </h3>
+
+                        {% if story.summary %}
+
+                        <span>
+                            {{ story.summary }}
+                        </span>
+
+                        {% endif %}
+
+                        <strong>
+                            READ STORY →
+                        </strong>
+
+                    </div>
+
+                </a>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+
+        <!-- =================================
+             BACK
+        ================================== -->
+
+        <section class="region-footer">
+
+            <a
+                href="/state/{{ region.state.slug }}"
+            >
+                ← BACK TO {{ region.state.name|upper }}
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+
+    <script
+        src="{{ url_for('static', filename='js/region.js') }}"
+    ></script>
+
+</body>
+
+</html>

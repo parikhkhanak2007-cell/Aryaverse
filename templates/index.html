@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        ARYAVERSE — Where India Comes Alive
+    </title>
+
+
+    <!-- =====================================================
+         FONTS
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         MAIN CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body class="opening-active">
+
+
+<!-- =========================================================
+     CINEMATIC OPENING
+========================================================= -->
+
+<section
+    id="openingScreen"
+    class="opening-screen"
+>
+
+
+    <!-- -----------------------------------------------------
+         OPENING VIDEO
+         Hidden until ENTER is clicked
+    ------------------------------------------------------ -->
+
+    <video
+        id="openingVideo"
+        class="opening-video"
+        muted
+        playsinline
+        preload="auto"
+    >
+
+        <source
+            src="/images/opening.mp4"
+            type="video/mp4"
+        >
+
+    </video>
+
+
+    <!-- Cinematic overlay -->
+
+    <div class="opening-vignette"></div>
+
+
+    <!-- -----------------------------------------------------
+         ENTER SCREEN
+         
+         NO LOGO HERE
+    ------------------------------------------------------ -->
+
+    <div
+        id="enterScreen"
+        class="enter-screen"
+    >
+
+        <p class="opening-eyebrow">
+            A JOURNEY THROUGH INDIA
+        </p>
+
+
+        <h1>
+            ARYAVERSE
+        </h1>
+
+
+        <p class="opening-tagline">
+            WHERE INDIA COMES ALIVE
+        </p>
+
+
+        <button
+            id="enterButton"
+            class="enter-button"
+            type="button"
+        >
+
+            ENTER
+
+        </button>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     MAIN WEBSITE
+========================================================= -->
+
+<div
+    id="mainSite"
+    class="main-site"
+>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="navbar">
+
+    <a
+        href="/"
+        class="brand"
+        aria-label="Aryaverse Home"
+    >
+
+        <!-- Circular ARYAVERSE emblem -->
+        <span class="brand-medallion">
+
+            <span class="brand-medallion-inner">
+
+                <img
+                    src="/images/logo.png"
+                    alt="Aryaverse"
+                >
+
+            </span>
+
+        </span>
+
+
+        <!-- Wordmark -->
+        <span class="brand-wordmark">
+
+            <strong>
+                ARYAVERSE
+            </strong>
+
+            <small>
+                WHERE INDIA COMES ALIVE
+            </small>
+
+        </span>
+
+    </a>
+
+
+    <nav
+        class="nav-links"
+        aria-label="Main navigation"
+    >
+
+        <a
+            href="#home"
+            class="active"
+        >
+            HOME
+        </a>
+
+        <a href="/map">
+            MAP
+        </a>
+
+        <a href="#experiences">
+            EXPERIENCES
+        </a>
+
+        <a href="/state/gujarat">
+            GUJARAT
+        </a>
+
+        <a href="#calendar">
+            CALENDAR
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+        <!-- -------------------------------------------------
+             NAVIGATION
+        -------------------------------------------------- -->
+
+        <nav
+            class="nav-links"
+            aria-label="Main navigation"
+        >
+
+            <a
+                href="#home"
+                class="active"
+            >
+                HOME
+            </a>
+
+
+            <a href="/map">
+                MAP
+            </a>
+
+
+            <a href="#experiences">
+                EXPERIENCES
+            </a>
+
+
+            <a href="/state/gujarat">
+                GUJARAT
+            </a>
+
+
+            <a href="#calendar">
+                CALENDAR
+            </a>
+
+        </nav>
+
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section
+            id="home"
+            class="hero"
+        >
+
+            <div class="hero-background"></div>
+
+            <div class="hero-overlay"></div>
+
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    DISCOVER THE LIVING HERITAGE OF INDIA
+                </p>
+
+
+                <h1>
+                    Discover
+                    <em>India.</em>
+                </h1>
+
+
+                <p class="hero-description">
+
+                    A living journey through India's
+                    stories, traditions, festivals,
+                    crafts, food and sacred spaces.
+
+                </p>
+
+
+                <a
+                    href="/map"
+                    class="hero-button"
+                >
+
+                    BEGIN THE JOURNEY
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+
+            <!-- Scroll indicator -->
+
+            <div class="scroll-indicator">
+
+                <span>
+                    SCROLL TO EXPLORE
+                </span>
+
+                <div class="scroll-line"></div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             INDIA
+        ================================================== -->
+
+        <section
+            id="india"
+            class="india-section"
+        >
+
+
+            <div class="india-image">
+
+                <img
+                    src="/images/india.png"
+                    alt="India"
+                >
+
+            </div>
+
+
+            <div class="india-content">
+
+                <p class="eyebrow">
+                    THE LAND OF EXPERIENCES
+                </p>
+
+
+                <h2>
+
+                    India is not
+                    <em>one story.</em>
+
+                </h2>
+
+
+                <div class="gold-line"></div>
+
+
+                <p>
+
+                    From the deserts of Kutch to
+                    the mountains of the north,
+                    every region carries its own
+                    landscapes, traditions,
+                    crafts and memories.
+
+                </p>
+
+
+                <a
+                    href="/map"
+                    class="text-button"
+                >
+
+                    EXPLORE THE MAP
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             EXPERIENCES
+        ================================================== -->
+
+        <section
+            id="experiences"
+            class="experiences-section"
+        >
+
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    EXPERIENCE INDIA
+                </p>
+
+
+                <h2>
+
+                    Where culture
+                    <em>comes alive.</em>
+
+                </h2>
+
+
+                <p>
+
+                    Explore the many ways India's
+                    heritage continues to live today.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="experience-grid">
+
+
+                <!-- FESTIVALS -->
+
+                <article class="experience-card">
+
+                    <img
+                        src="/images/festivals.png"
+                        alt="Indian Festivals"
+                    >
+
+                    <div class="experience-overlay"></div>
+
+
+                    <div class="experience-content">
+
+                        <p class="card-label">
+                            COLOUR · CELEBRATION
+                        </p>
+
+
+                        <h3>
+                            Festivals
+                        </h3>
+
+
+                        <p>
+
+                            Celebrations that bring
+                            communities together.
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- SACRED SPACES -->
+
+                <article class="experience-card">
+
+                    <img
+                        src="/images/sacred-spaces.png"
+                        alt="Sacred Spaces"
+                    >
+
+                    <div class="experience-overlay"></div>
+
+
+                    <div class="experience-content">
+
+                        <p class="card-label">
+                            DEVOTION · ARCHITECTURE
+                        </p>
+
+
+                        <h3>
+                            Sacred Spaces
+                        </h3>
+
+
+                        <p>
+
+                            Temples, landscapes and
+                            places of devotion.
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- FOOD -->
+
+                <article class="experience-card">
+
+                    <img
+                        src="/images/food.png"
+                        alt="Indian Food"
+                    >
+
+                    <div class="experience-overlay"></div>
+
+
+                    <div class="experience-content">
+
+                        <p class="card-label">
+                            FLAVOUR · TRADITION
+                        </p>
+
+
+                        <h3>
+                            Food
+                        </h3>
+
+
+                        <p>
+
+                            Flavours shaped by
+                            geography and tradition.
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- TEXTILES -->
+
+                <article class="experience-card">
+
+                    <img
+                        src="/images/textiles.png"
+                        alt="Indian Textiles"
+                    >
+
+                    <div class="experience-overlay"></div>
+
+
+                    <div class="experience-content">
+
+                        <p class="card-label">
+                            CRAFT · IDENTITY
+                        </p>
+
+
+                        <h3>
+                            Textiles
+                        </h3>
+
+
+                        <p>
+
+                            Craft, colour and generations
+                            of knowledge.
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             GUJARAT
+        ================================================== -->
+
+        <section
+            id="gujarat"
+            class="gujarat-section"
+        >
+
+
+            <div class="gujarat-image">
+
+                <img
+                    src="/images/gujarat.png"
+                    alt="Gujarat"
+                >
+
+            </div>
+
+
+            <div class="gujarat-overlay"></div>
+
+
+            <div class="gujarat-content">
+
+                <p class="eyebrow">
+                    A WORLD WITHIN INDIA
+                </p>
+
+
+                <h2>
+                    Gujarat
+                </h2>
+
+
+                <div class="gold-line"></div>
+
+
+                <p>
+
+                    A land of vibrant festivals,
+                    intricate crafts, ancient temples,
+                    colourful traditions and
+                    extraordinary landscapes.
+
+                </p>
+
+
+                <a
+                    href="/state/gujarat"
+                    class="text-button"
+                >
+
+                    ENTER GUJARAT
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             CULTURAL CALENDAR
+        ================================================== -->
+
+        <section
+            id="calendar"
+            class="calendar-section"
+        >
+
+
+            <div class="calendar-heading">
+
+                <p class="eyebrow">
+                    EXPERIENCE INDIA THROUGH TIME
+                </p>
+
+
+                <h2>
+
+                    Cultural
+                    <em>Calendar</em>
+
+                </h2>
+
+
+                <p>
+                    Every season brings a different story.
+                </p>
+
+            </div>
+
+
+
+            <div class="calendar-grid">
+
+
+                <article class="calendar-item">
+
+                    <span>
+                        JAN
+                    </span>
+
+
+                    <h3>
+                        Winter Stories
+                    </h3>
+
+
+                    <p>
+
+                        Festivals, crafts and traditions
+                        across India's winter landscapes.
+
+                    </p>
+
+                </article>
+
+
+
+                <article class="calendar-item">
+
+                    <span>
+                        MAR
+                    </span>
+
+
+                    <h3>
+                        Colours of India
+                    </h3>
+
+
+                    <p>
+
+                        A season filled with colour,
+                        music and celebration.
+
+                    </p>
+
+                </article>
+
+
+
+                <article class="calendar-item">
+
+                    <span>
+                        AUG
+                    </span>
+
+
+                    <h3>
+                        Monsoon Traditions
+                    </h3>
+
+
+                    <p>
+
+                        Sacred rituals and celebrations
+                        shaped by the rains.
+
+                    </p>
+
+                </article>
+
+
+
+                <article class="calendar-item">
+
+                    <span>
+                        OCT
+                    </span>
+
+
+                    <h3>
+                        Festival Season
+                    </h3>
+
+
+                    <p>
+
+                        Lights, devotion, dance and
+                        generations of tradition.
+
+                    </p>
+
+                </article>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+
+                <img
+                    src="/images/logo.png"
+                    alt="Aryaverse"
+                >
+
+            </div>
+
+
+            <h2>
+                ARYAVERSE
+            </h2>
+
+
+            <p>
+                WHERE INDIA COMES ALIVE
+            </p>
+
+        </div>
+
+
+
+        <div class="footer-links">
+
+            <a href="#home">
+                HOME
+            </a>
+
+
+            <a href="/map">
+                CULTURAL MAP
+            </a>
+
+
+            <a href="#experiences">
+                EXPERIENCES
+            </a>
+
+
+            <a href="/state/gujarat">
+                GUJARAT
+            </a>
+
+
+            <a href="#calendar">
+                CALENDAR
+            </a>
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+            <span>
+                INDIA · CULTURE · HERITAGE
+            </span>
+
+
+            <span>
+                © 2026 ARYAVERSE
+            </span>
+
+        </div>
+
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script
+    src="{{ url_for('static', filename='js/script.js') }}"
+></script>
+
+
+</body>
+
+</html>

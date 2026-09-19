@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ state.name }} — Aryaverse
+    </title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='state.css') }}"
+    >
+
+</head>
+
+
+<body
+    data-state-slug="{{ state.slug }}"
+>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header class="state-navbar">
+
+
+        <a
+            href="/"
+            class="state-brand"
+        >
+
+            <span class="brand-medallion">
+
+                <span class="brand-inner">
+
+                    <img
+                        src="/images/logo.png"
+                        alt="Aryaverse"
+                    >
+
+                </span>
+
+            </span>
+
+
+            <span class="brand-copy">
+
+                <strong>
+                    ARYAVERSE
+                </strong>
+
+                <small>
+                    WHERE INDIA COMES ALIVE
+                </small>
+
+            </span>
+
+        </a>
+
+
+        <nav class="state-nav">
+
+            <a href="/">
+                HOME
+            </a>
+
+            <a
+                href="/map"
+                class="active"
+            >
+                MAP
+            </a>
+
+            <a href="/#experiences">
+                EXPERIENCES
+            </a>
+
+            <a href="/#calendar">
+                CALENDAR
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="state-page">
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="state-hero">
+
+
+            <div class="state-hero-image">
+
+                <img
+                    id="stateHeroImage"
+                    src="{{
+                        '/images/' + state.image
+                        if state.image
+                        else '/images/gujarat.png'
+                    }}"
+                    alt="{{ state.name }}"
+                >
+
+            </div>
+
+
+            <div class="state-hero-overlay"></div>
+
+
+            <div class="state-hero-content">
+
+                <p class="eyebrow">
+                    EXPLORE INDIA
+                </p>
+
+
+                <h1>
+                    {{ state.name }}
+                </h1>
+
+
+                <div class="hero-divider"></div>
+
+
+                <p class="state-description">
+
+                    {{
+                        state.description
+                        or
+                        "Discover the cultural landscapes, traditions, crafts, food, festivals and stories of this land."
+                    }}
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             INTRO
+        ================================================== -->
+
+        <section class="state-intro">
+
+
+            <div class="intro-heading">
+
+                <p class="eyebrow">
+                    DISCOVER THE REGION
+                </p>
+
+
+                <h2>
+                    A world<br>
+                    within {{ state.name }}.
+                </h2>
+
+            </div>
+
+
+            <div class="intro-copy">
+
+                <p>
+
+                    India is not experienced as one
+                    single story. Every region carries
+                    its own landscapes, traditions,
+                    crafts, flavours and memories.
+
+                </p>
+
+
+                <p>
+
+                    Continue your journey into
+                    the living culture of
+                    {{ state.name }}.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             REGIONS
+        ================================================== -->
+
+        <section class="regions-section">
+
+
+            <div class="regions-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        {{ state.name|upper }}
+                    </p>
+
+
+                    <h2>
+                        Explore Kutch.
+                    </h2>
+
+                </div>
+
+
+                <p class="region-label">
+                    CULTURAL REGION
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ONLY KUTCH
+            ================================================== -->
+
+            <div class="region-grid">
+
+
+                {% set kutch_region = namespace(item=None) %}
+
+
+                {% for region in state.regions %}
+
+                    {% if region.slug == "kutch" %}
+
+                        {% set kutch_region.item = region %}
+
+                    {% endif %}
+
+                {% endfor %}
+
+
+
+                {% if kutch_region.item %}
+
+
+                    <a
+                        href="/region/{{ state.slug }}/kutch"
+                        class="region-card"
+                    >
+
+
+                        <div class="region-card-image">
+
+                            <img
+                                src="{{
+                                    '/images/' + kutch_region.item.image
+                                    if kutch_region.item.image
+                                    else '/images/kutch-banner.png'
+                                }}"
+                                alt="Kutch"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+
+                        <div class="region-card-overlay"></div>
+
+
+                        <div class="region-card-content">
+
+
+                            <p class="region-kicker">
+                                GUJARAT · CULTURAL REGION
+                            </p>
+
+
+                            <h3>
+                                Kutch
+                            </h3>
+
+
+                            <p class="region-description">
+
+                                {{
+                                    kutch_region.item.description
+                                    or
+                                    "A land of living crafts, folk traditions, music, embroidery and the Rann."
+                                }}
+
+                            </p>
+
+
+                            <span class="region-cta">
+                                ENTER KUTCH →
+                            </span>
+
+                        </div>
+
+
+                    </a>
+
+
+                {% else %}
+
+
+                    <div class="no-region">
+
+                        <p class="eyebrow">
+                            COMING SOON
+                        </p>
+
+
+                        <h3>
+                            Kutch is being prepared.
+                        </h3>
+
+
+                        <p>
+                            This cultural region will
+                            be available shortly.
+                        </p>
+
+                    </div>
+
+
+                {% endif %}
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CULTURAL STATEMENT
+        ================================================== -->
+
+        <section class="state-statement">
+
+
+            <div class="statement-line"></div>
+
+
+            <p class="eyebrow">
+                ARYAVERSE
+            </p>
+
+
+            <h2>
+                Every region<br>
+                carries a story.
+            </h2>
+
+
+            <p class="statement-copy">
+
+                Follow the journey into Kutch
+                and discover its food, festivals,
+                textiles and folk stories.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             BACK TO MAP
+        ================================================== -->
+
+        <section class="state-footer">
+
+            <a href="/map">
+                ← BACK TO INDIA
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script
+        src="{{ url_for('static', filename='js/state.js') }}"
+    ></script>
+
+
+</body>
+</html>

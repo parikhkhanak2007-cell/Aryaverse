@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ story.title }} — Aryaverse
+    </title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='story.css') }}"
+    >
+
+</head>
+
+
+<body data-story-id="{{ story.id }}">
+
+
+<header class="story-header">
+
+    <a href="/" class="story-brand">
+
+        <span class="brand-circle">
+
+            <span class="brand-circle-inner">
+
+                <img
+                    src="/images/logo.png"
+                    alt="Aryaverse"
+                >
+
+            </span>
+
+        </span>
+
+
+        <span class="brand-text">
+
+            <strong>ARYAVERSE</strong>
+
+            <small>
+                WHERE INDIA COMES ALIVE
+            </small>
+
+        </span>
+
+    </a>
+
+
+    <nav class="story-nav">
+
+        <a href="/map">
+            MAP
+        </a>
+
+        <a
+            href="/region/{{ story.region.state.slug }}/{{ story.region.slug }}"
+        >
+            ← BACK TO REGION
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- ============================================
+     HERO
+============================================= -->
+
+<section class="story-hero">
+
+    <div class="story-hero-image">
+
+        <img
+            id="storyImage"
+            src="{{
+                '/images/' + story.image
+                if story.image and not story.image.startswith('/')
+                else (story.image or '/images/kutch-story.png')
+            }}"
+            alt="{{ story.title }}"
+        >
+
+    </div>
+
+
+    <div class="story-hero-overlay"></div>
+
+
+    <div class="story-hero-content">
+
+        <p class="story-eyebrow">
+
+            {{ story.region.name|upper }}
+            · FOLK STORY
+
+        </p>
+
+
+        <h1 id="storyTitle">
+
+            {{ story.title }}
+
+        </h1>
+
+
+        <p id="storySummary">
+
+            {{ story.summary }}
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ============================================
+     MAIN
+============================================= -->
+
+<main class="story-main">
+
+
+    <article class="story-reader">
+
+
+        <div class="reader-header">
+
+            <div>
+
+                <p class="story-eyebrow">
+                    THE ORIGINAL STORY
+                </p>
+
+                <h2>
+                    Read in English
+                </h2>
+
+            </div>
+
+
+            <span class="original-tag">
+                ORIGINAL
+            </span>
+
+        </div>
+
+
+
+        <!-- ======================================
+             ACTUAL STORY — SERVER RENDERED
+        ======================================= -->
+
+        <div id="originalStory" class="story-text">
+
+    {% if story.story_text %}
+
+        {{ story.story_text | safe }}
+
+    {% else %}
+
+        <p>
+            Story content is not available yet.
+        </p>
+
+    {% endif %}
+
+</div>
+
+
+
+        <!-- ======================================
+             EXPERIENCE
+        ======================================= -->
+
+        <section class="language-section">
+
+            <p class="story-eyebrow">
+                EXPERIENCE THE STORY
+            </p>
+
+
+            <h3>
+                Read it your way.
+            </h3>
+
+
+            <div class="language-controls">
+
+
+                <label class="language-select-box">
+
+                    <span>
+                        LANGUAGE
+                    </span>
+
+                    <select id="languageSelect">
+
+                        <option value="en">
+                            English
+                        </option>
+
+                        <option value="hi">
+                            हिन्दी
+                        </option>
+
+                        <option value="gu">
+                            ગુજરાતી
+                        </option>
+
+                        <option value="mr">
+                            मराठी
+                        </option>
+
+                        <option value="bn">
+                            বাংলা
+                        </option>
+
+                        <option value="ta">
+                            தமிழ்
+                        </option>
+
+                        <option value="te">
+                            తెలుగు
+                        </option>
+
+                        <option value="kn">
+                            ಕನ್ನಡ
+                        </option>
+
+                        <option value="ml">
+                            മലയാളം
+                        </option>
+
+                        <option value="pa">
+                            ਪੰਜਾਬੀ
+                        </option>
+
+                    </select>
+
+                </label>
+
+
+                <button
+                    id="translateBtn"
+                    class="action-button gold-button"
+                    type="button"
+                >
+                    TRANSLATE
+                </button>
+
+
+                <button
+                    id="listenBtn"
+                    class="action-button dark-button"
+                    type="button"
+                >
+                    LISTEN
+                </button>
+
+            </div>
+
+
+            <p
+                id="translationStatus"
+                class="action-status"
+            ></p>
+
+
+
+            <!-- TRANSLATION -->
+
+            <div
+                id="translationPanel"
+                class="translation-panel"
+                hidden
+            >
+
+                <div class="translation-header">
+
+                    <div>
+
+                        <p class="story-eyebrow">
+                            ARYAVERSE TTT
+                        </p>
+
+                        <h4 id="translationTitle">
+                            Translation
+                        </h4>
+
+                    </div>
+
+
+                    <button
+                        id="closeTranslation"
+                        class="small-link"
+                        type="button"
+                    >
+                        SHOW ORIGINAL
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="translatedStory"
+                    class="story-text"
+                ></div>
+
+            </div>
+
+
+
+            <!-- AUDIO -->
+
+            <div
+                id="audioPanel"
+                class="audio-panel"
+                hidden
+            >
+
+                <p class="story-eyebrow">
+                    ARYAVERSE TTS
+                </p>
+
+
+                <h4 id="audioTitle">
+                    Story narration
+                </h4>
+
+
+                <p
+                    id="audioStatus"
+                    class="action-status"
+                ></p>
+
+
+                <audio
+                    id="storyAudio"
+                    controls
+                    preload="metadata"
+                ></audio>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             LIKE
+        ======================================= -->
+
+        <section class="engagement-section">
+
+            <button
+                id="likeBtn"
+                class="like-button"
+                type="button"
+            >
+                ♡ LIKE STORY
+            </button>
+
+
+            <span
+                id="likeStatus"
+                class="like-status"
+            ></span>
+
+        </section>
+
+
+
+        <!-- ======================================
+             COMMENTS
+        ======================================= -->
+
+        <section class="community-section">
+
+            <div class="community-header">
+
+                <div>
+
+                    <p class="story-eyebrow">
+                        COMMUNITY
+                    </p>
+
+                    <h2>
+                        Share a thought.
+                    </h2>
+
+                </div>
+
+
+                <p>
+                    What did this story make
+                    you think about?
+                </p>
+
+            </div>
+
+
+            <div class="comment-layout">
+
+
+                <form
+                    id="commentForm"
+                    class="comment-form"
+                >
+
+                    <input
+                        id="commentName"
+                        type="text"
+                        placeholder="Your name"
+                        maxlength="100"
+                        required
+                    >
+
+
+                    <textarea
+                        id="commentText"
+                        placeholder="Write your thought..."
+                        maxlength="1000"
+                        required
+                    ></textarea>
+
+
+                    <button
+                        type="submit"
+                        class="action-button gold-button"
+                    >
+                        SHARE COMMENT →
+                    </button>
+
+
+                    <p
+                        id="commentStatus"
+                        class="action-status"
+                    ></p>
+
+                </form>
+
+
+                <div
+                    id="commentsContainer"
+                    class="comments-container"
+                >
+
+                    <p class="empty-comments">
+                        Loading comments...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </article>
+
+
+
+    <!-- ============================================
+         AI SIDEBAR
+    ============================================= -->
+
+    <aside class="story-sidebar">
+
+
+        <section class="ai-card">
+
+            <p class="ai-eyebrow">
+                ARYAVERSE AI
+            </p>
+
+
+            <h2>
+                Ask the<br>
+                story.
+            </h2>
+
+
+            <p class="ai-description">
+
+                Ask a question about something
+                you just read. The assistant
+                answers from the story.
+
+            </p>
+
+
+            <textarea
+                id="questionInput"
+                maxlength="500"
+                placeholder="What is this story about?"
+            ></textarea>
+
+
+            <button
+                id="askButton"
+                class="ai-ask-button"
+                type="button"
+            >
+                ASK THE STORY →
+            </button>
+
+
+            <p
+                id="aiStatus"
+                class="ai-status"
+            ></p>
+
+
+            <div
+                id="answerBox"
+                class="ai-answer"
+                hidden
+            ></div>
+
+        </section>
+
+
+        <section class="story-note">
+
+            <p class="story-eyebrow">
+                A STORY IS A MEMORY
+            </p>
+
+
+            <p>
+                Folk stories carry fragments
+                of communities — landscapes,
+                values, celebrations and
+                memories.
+            </p>
+
+        </section>
+
+    </aside>
+
+</main>
+
+
+
+<footer class="story-footer">
+
+    <span>
+        ARYAVERSE · WHERE INDIA COMES ALIVE
+    </span>
+
+
+    <a href="/map">
+        EXPLORE INDIA →
+    </a>
+
+</footer>
+
+
+
+<!-- IMPORTANT:
+     Put story.js inside static/js/
+-->
+
+<script
+    src="{{ url_for('static', filename='js/story.js') }}"
+></script>
+
+</body>
+</html>
