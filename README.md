@@ -47,14 +47,11 @@ India
 ### Voice
 - Edge TTS
 
-### Cloud
-- Amazon Web Services
+
 
 ## Architecture
 
 User
-↓
-AWS EC2
 ↓
 Flask Application
 ├── Database
@@ -84,11 +81,6 @@ Users can:
 
 The AI assistant is instructed to answer from the supplied story rather than inventing story-specific information.
 
-## AWS Deployment
-
-Aryaverse is deployed on AWS EC2.
-
-AWS provides the cloud infrastructure needed to make the application publicly accessible.
 
 ## Credits
 
